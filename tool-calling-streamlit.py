@@ -1,11 +1,14 @@
 import streamlit as st
 import requests
 import os
+from dotenv import load_dotenv
 from langchain_core.tools import tool
 from langchain.chat_models import init_chat_model
 from langchain_core.messages import HumanMessage, AIMessage, ToolMessage
 import time
 from datetime import datetime
+
+load_dotenv()
 
 # Page configuration
 st.set_page_config(
@@ -177,7 +180,7 @@ if 'chat_history' not in st.session_state:
 
 # Set up API key
 if not os.environ.get("GOOGLE_API_KEY"):
-    os.environ["GOOGLE_API_KEY"] = "AIzaSyCWjsitXk9PrlSmZ1Aa6fTJGcQO2tbvoH8"
+    os.environ["GOOGLE_API_KEY"] = os.getenv("GOOGLE_API_KEY")
 
 # ============================== Tool Creation ==============================
 
